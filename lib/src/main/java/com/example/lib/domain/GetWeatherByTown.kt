@@ -9,12 +9,17 @@ import javax.inject.Inject
  */
 class GetWeatherByTown @Inject constructor(private val weatherRepository: WeatherRepository) {
 
-    suspend fun execute(): WeatherTownResponse {
+    suspend fun execute(
+        lat: Long,
+        lon: Long
+    ): WeatherTownResponse {
         return weatherRepository.getWeatherTown(
-            33.441792.toLong(),
-            (-94.037689).toLong(),
+            lat,
+            lon,
             "minutely,hourly",
-            "39df4d2213f72ea35fcfcf89100d61ab"
+            "39df4d2213f72ea35fcfcf89100d61ab",
+            "metric",
+            "fr"
         )
     }
 }

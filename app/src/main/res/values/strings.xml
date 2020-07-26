@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">WeatherTestPSA</string>
+
+    <string name="add_town">Add town</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_town">"Search your town "</string>
+
+    <!--    Weather detail attributes-->
+    <string name="temp_last_update_placeholder">Derniére mise à jour %1$s</string>
+    <string name="temp_degree_placeholder">%1$s°</string>
+    <string name="temp_min_max_degree_placeholder">%1$s°/%2$s°</string>
+    <string name="temp_daily_title_degree_placeholder">Prévisions (%1$d prochains jours)</string>
 </resources>

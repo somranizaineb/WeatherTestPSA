@@ -1,5 +1,6 @@
 package com.example.lib.di.modules
 
+import com.example.lib.data.local.dataSource.WeatherLocal
 import com.example.lib.data.remote.dataSource.WeatherRemote
 import com.example.lib.data.repository.WeatherRepositoryImpl
 import com.example.lib.data.repository.WeatherRepository
@@ -15,6 +16,6 @@ class ContractModule {
 
     @Provides
     @Singleton
-    fun provideWeatherRepository(weatherRemote: WeatherRemote)
-            : WeatherRepository = WeatherRepositoryImpl(weatherRemote)
+    fun provideWeatherRepository(weatherRemote: WeatherRemote, weatherLocal: WeatherLocal)
+            : WeatherRepository = WeatherRepositoryImpl(weatherRemote, weatherLocal)
 }

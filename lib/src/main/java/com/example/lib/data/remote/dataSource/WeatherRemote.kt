@@ -16,6 +16,8 @@ class WeatherRemote @Inject constructor() {
         lat: Long,
         lon: Long,
         exclude: String,
-        appId: String
-    ): WeatherTownResponse = serviceEndPoint.getWeatherTown(lat, lon, exclude, appId)
+        appId: String,
+        units: String,
+        lang: String
+    ): WeatherTownResponse = serviceEndPoint.getWeatherTown(lat, lon, exclude, appId, units, lang)
 }

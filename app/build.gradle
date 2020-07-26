@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(":lib")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def dependencies = rootProject.ext.mobileDependencies
     implementation dependencies.kotlin
     implementation dependencies.ktxCore
@@ -62,4 +63,12 @@ dependencies {
     //
     implementation dependencies.lifeCycle
     implementation dependencies.lifeCycleVM
+
+    // recycler view
+    implementation dependencies.recyclerView
+
+
+    // material
+    implementation dependencies.materialDesign
+
 }

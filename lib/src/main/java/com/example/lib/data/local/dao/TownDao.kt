@@ -1,11 +1,10 @@
-package com.example.psatest.data.local.dao
+package com.example.lib.data.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.psatest.data.entities.Town
+import com.example.lib.data.entities.Town
 
 /**
  * Created by zaineb on 23/07/2020
@@ -13,9 +12,10 @@ import com.example.psatest.data.entities.Town
 @Dao
 interface TownDao {
 
-    @Query("SELECT * FROM users")
-    fun findAll(): LiveData<List<Town>>
+    @Query("SELECT * FROM towns")
+    suspend fun findAll(): List<Town>
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun add(towns: List<Town>)
+    suspend fun insert(town: Town)
 }

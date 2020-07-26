@@ -2,7 +2,7 @@ package com.example.lib.data.remote.response.model
 
 import com.squareup.moshi.Json
 
-class Weather {
+open class Weather {
     @Json(name = "id")
     var id: Int? = null
 
@@ -14,6 +14,9 @@ class Weather {
 
     @Json(name = "icon")
     var icon: String? = null
+
+    var currentId: Int? = null
+
     override fun toString(): String =
         "Weather(id=$id, main=$main, description=$description, icon=$icon)"
 }

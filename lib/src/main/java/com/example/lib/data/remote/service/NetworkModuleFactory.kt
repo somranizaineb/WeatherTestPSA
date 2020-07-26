@@ -19,10 +19,10 @@ import javax.inject.Named
  */
 object NetworkModuleFactory {
 
-    const val CONNECT_TIMEOUT: Long = 60 // 10MB
-    const val READ_TIMEOUT: Long = 60 // 10MB
-    const val LOG_INTERCEPTOR = "LogInterceptor"
-    const val CACHE = "cache"
+    private const val CONNECT_TIMEOUT: Long = 60 // 10MB
+    private const val READ_TIMEOUT: Long = 60 // 10MB
+    private const val LOG_INTERCEPTOR = "LogInterceptor"
+    private const val CACHE = "cache"
 
     fun makeService(context: Context): ServiceEndPoint =
         makeService(makeOkHttpClient(context))
@@ -65,6 +65,4 @@ object NetworkModuleFactory {
         return Cache(application.cacheDir, cacheSize.toLong())
 
     }
-
-
 }
