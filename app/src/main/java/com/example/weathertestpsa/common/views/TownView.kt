@@ -1,4 +1,4 @@
-package com.example.weathertestpsa.common.view
+package com.example.weathertestpsa.common.views
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.data.entities.Town
 import com.example.weathertestpsa.R
+import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.adapters.TownListAdapter
 import kotlinx.android.synthetic.main.all_town_view.view.*
 import java.util.*
 
@@ -33,7 +35,7 @@ class TownView : ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // INTERACTION PROPERTY SECTION
     ///////////////////////////////////////////////////////////////////////////
-    var townViewInteraction: TownViewInteraction? = null
+    var townViewInteraction: TownContract.AddTownFragmentContract? = null
 
     ///////////////////////////////////////////////////////////////////////////
     // COUNTRIES GENERATING PROPERTY
@@ -48,7 +50,7 @@ class TownView : ConstraintLayout {
 
     fun initViewAccordingTo(
         listOfTowns: MutableList<Town>,
-        interaction: TownViewInteraction
+        interaction: TownContract.AddTownFragmentContract
     ) {
         allCountriesList = listOfTowns
         selectedCountriesList = mutableListOf()
@@ -62,14 +64,16 @@ class TownView : ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     private fun initCountryList() {
         context?.let { ctx ->
-            adapter = TownListAdapter(
-                selectedCountriesList,
-                object : TownListAdapter.ItemClickEvent {
-                    override fun onItemClick(town: Town?) {
-                        townViewInteraction?.chooseTown(town)
+            adapter =
+                TownListAdapter(
+                    selectedCountriesList,
+                    object :
+                        TownListAdapter.ItemClickEvent {
+                        override fun onItemClick(town: Town?) {
+                            townViewInteraction?.chooseTown(town)
+                        }
                     }
-                }
-            )
+                )
             val llm = LinearLayoutManager(ctx)
             llm.orientation = LinearLayoutManager.VERTICAL
             rv?.layoutManager = llm
@@ -95,7 +99,4 @@ class TownView : ConstraintLayout {
             }
     }
 
-    interface TownViewInteraction {
-        fun chooseTown(town: Town?)
-    }
 }

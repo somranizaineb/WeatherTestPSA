@@ -33,8 +33,8 @@ interface ServiceEndPoint {
     ///////////////////////////////////////////////////////////////////////////
     @GET(ONE_CALL)
     suspend fun getWeatherTown(
-        @Query(LAT) lat: Long,
-        @Query(LON) lon: Long,
+        @Query(LAT) lat: Double,
+        @Query(LON) lon: Double,
         @Query(EXCLUDE) exclude: String,
         @Query(APPID) appid: String,
         @Query(UNITS) units : String,

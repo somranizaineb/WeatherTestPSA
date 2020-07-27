@@ -11,18 +11,19 @@ interface WeatherRepository {
 
 
     suspend fun getWeatherTown(
-        lat: Long,
-        lon: Long,
+        lat: Double,
+        lon: Double,
         exclude: String,
         appid: String,
         units: String,
         lang : String
     ): WeatherTownResponse
 
+
     suspend fun getWeatherInfoFromLocal(
-        lat: Long,
-        lon: Long
-    ): TownWeather
+        lat: Double,
+        lon: Double
+    ): TownWeather?
 
     suspend fun addWeatherInfoToLocal(townWeather: TownWeather)
 

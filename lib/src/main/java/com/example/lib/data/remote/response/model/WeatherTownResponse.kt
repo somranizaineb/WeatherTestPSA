@@ -10,10 +10,10 @@ import com.squareup.moshi.Json
 
 class WeatherTownResponse {
     @Json(name = "lat")
-    var lat: Long? = null
+    var lat: Double = 0.0
 
     @Json(name = "lon")
-    var lon: Long? = null
+    var lon: Double = 0.0
 
     @Json(name = "timezone")
     var timezone: String? = null
@@ -30,8 +30,8 @@ class WeatherTownResponse {
 
 fun WeatherTownResponse.townWeatherBuilder(): TownWeather {
     val townWeather = TownWeather()
-    townWeather.lon = this.lon ?: 0
-    townWeather.lat = this.lat ?: 0
+    townWeather.lon = this.lon ?: 0.0
+    townWeather.lat = this.lat ?: 0.0
     townWeather.timezone = this.timezone
     townWeather.current = Gson().toJson(this.current)
     townWeather.daily = Gson().toJson(this.daily)

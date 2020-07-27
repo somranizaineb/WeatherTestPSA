@@ -12,7 +12,7 @@ class WeatherLocal @Inject constructor() {
     @Inject
     lateinit var appDatabase: AppDatabase
 
-    suspend fun findAllTownWeather(lat: Long, lon: Long): TownWeather =
+    suspend fun findAllTownWeather(lat: Double, lon: Double): TownWeather? =
         appDatabase.townWeatherDao.findAll(lat, lon)
 
     suspend fun addTownWeather(townWeather: TownWeather) {

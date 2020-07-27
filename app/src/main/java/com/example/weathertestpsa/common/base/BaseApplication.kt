@@ -14,30 +14,17 @@ import com.example.weathertestpsa.di.DaggerAppComponent
 class BaseApplication : Application() {
 
     ///////////////////////////////////////////////////////////////////////////
-    // PROPERTIES SECTION
+    // COMPANION OBJECT SECTION
     ///////////////////////////////////////////////////////////////////////////
-    lateinit var libComponent: LibComponent
-    lateinit var component: AppComponent
-
-
     companion object {
 
         /**
-         * Obtain lib dagger component.
+         * Obtain app  components.
          *
-         * @param context The application context
          */
-        @JvmStatic
-        fun libComponent(context: Context) =
-            (context.applicationContext as? BaseApplication)?.libComponent
+        lateinit var libComponent: LibComponent
+        lateinit var component: AppComponent
 
-        /**
-         * Obtain app dagger component.
-         *
-         * @param context The application context
-         */
-        @JvmStatic
-        fun component(context: Context) = (context.applicationContext as? BaseApplication)?.component
 
 
     }

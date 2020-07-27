@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lib.data.entities.Town
 import com.example.lib.data.entities.TownWeather
 import com.example.lib.data.entities.townWeatherBuilder
 import com.example.lib.data.remote.response.model.WeatherTownResponse
 import com.example.lib.data.remote.response.model.townWeatherBuilder
 import com.example.lib.domain.*
-import com.example.lib.data.entities.Town
+import com.example.weathertestpsa.common.base.BaseApplication
+import com.example.weathertestpsa.common.utils.LoadingState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +27,10 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
     ///////////////////////////////////////////////////////////////////////////
     // USE CASE INJECTION SECTION
     ///////////////////////////////////////////////////////////////////////////
+    init {
+
+        BaseApplication.component.inject(this)
+    }
 
     @Inject
     lateinit var getWeatherByTown: GetWeatherByTown
@@ -40,12 +47,15 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
     @Inject
     lateinit var retrieveFavoritesTownsFromLocal: RetrieveFavoritesTownsFromLocal
 
+    private val _loadingState = MutableLiveData<LoadingState>()
+    val loadingState: LiveData<LoadingState>
+        get() = _loadingState
+
 
     ///////////////////////////////////////////////////////////////////////////
     // OBSERVE FUNCTION SECTION
     ///////////////////////////////////////////////////////////////////////////
-    private val weatherLiveData = MutableLiveData<WeatherTownResponse>()
-    fun observeWeatherData(): LiveData<WeatherTownResponse> = weatherLiveData
+
 
     private val weatherDetailLiveData = MutableLiveData<WeatherTownResponse?>()
     fun observeWeatherDetailLiveData(): LiveData<WeatherTownResponse?> = weatherDetailLiveData
@@ -57,14 +67,22 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
     ///////////////////////////////////////////////////////////////////////////
     // WeatherViewModelContract IMPLEMENTATION
     ///////////////////////////////////////////////////////////////////////////
-    override fun fetchData(lat: Long, lon: Long) {
+    override fun fetchData(lat: Double, lon: Double) {
         viewModelScope.launch {
-            val weatherAsync = async { getWeatherByTown.execute(lat, lon) }
-            val weather = weatherAsync.await()
-            addWeatherInfoToLocal(weather.townWeatherBuilder())
-            weatherLiveData.postValue(weather)
+            try {
+                _loadingState.value = LoadingState.LOADING
+                val weatherAsync = async { getWeatherByTown.execute(lat, lon) }
+                val weather = weatherAsync.await()
+                addWeatherInfoToLocal(weather.townWeatherBuilder())
+                weatherDetailLiveData.postValue(weather)
+                _loadingState.value = LoadingState.LOADED
+            } catch (e: Exception) {
+                _loadingState.value = LoadingState.error(e.message)
+            }
         }
+
     }
+
 
     private fun addWeatherInfoToLocal(townWeather: TownWeather) {
         viewModelScope.launch {
@@ -72,16 +90,21 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
         }
     }
 
-    override fun retrieveWeatherInfoFromLocal(lat: Long, lon: Long) {
+    override fun retrieveWeatherInfoFromLocal(lat: Double, lon: Double) {
         viewModelScope.launch {
             val weatherAsync = async { retrieveWeatherInfoFromLocal.execute(lat, lon) }
             val weather = weatherAsync.await()
-            weatherDetailLiveData.postValue(weather.townWeatherBuilder())
+            weather?.let {
+                weatherDetailLiveData.postValue(it.townWeatherBuilder())
+            }
+
         }
     }
 
     override fun addTown(town: Town) {
-        viewModelScope.launch { addTown.execute(town) }
+        viewModelScope.launch {
+            addTown.execute(town)
+        }
     }
 
     override fun retrieveFavoritesTownsFromLocal() {

@@ -13,8 +13,8 @@ class WeatherRemote @Inject constructor() {
     lateinit var serviceEndPoint: ServiceEndPoint
 
     suspend fun getWeatherTownAsync(
-        lat: Long,
-        lon: Long,
+        lat: Double,
+        lon: Double,
         exclude: String,
         appId: String,
         units: String,

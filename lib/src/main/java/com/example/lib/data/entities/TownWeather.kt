@@ -15,9 +15,9 @@ import com.google.gson.reflect.TypeToken
     primaryKeys = ["lat", "lon"]
 )
 class TownWeather {
-    var lat: Long = 0
+    var lat: Double = 0.0
 
-    var lon: Long = 0
+    var lon: Double = 0.0
 
     var timezone: String? = null
 
@@ -31,8 +31,8 @@ class TownWeather {
 
 fun TownWeather.townWeatherBuilder(): WeatherTownResponse {
     val weatherTownResponse = WeatherTownResponse()
-    weatherTownResponse.lon = lon
-    weatherTownResponse.lat = lat
+    weatherTownResponse.lon = lon ?: 0.0
+    weatherTownResponse.lat = lat ?: 0.0
     weatherTownResponse.timezone = this.timezone
     weatherTownResponse.current = Gson().fromJson(this.current, Current::class.java)
     weatherTownResponse.daily =

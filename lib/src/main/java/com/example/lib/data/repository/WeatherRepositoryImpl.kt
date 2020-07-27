@@ -15,8 +15,8 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
 
     override suspend fun getWeatherTown(
-        lat: Long,
-        lon: Long,
+        lat: Double,
+        lon: Double,
         exclude: String,
         appid: String,
         units: String,
@@ -30,7 +30,7 @@ class WeatherRepositoryImpl(
         lang
     )
 
-    override suspend fun getWeatherInfoFromLocal(lat: Long, lon: Long): TownWeather =
+    override suspend fun getWeatherInfoFromLocal(lat: Double, lon: Double): TownWeather? =
         weatherLocal.findAllTownWeather(lat, lon)
 
     override suspend fun addWeatherInfoToLocal(townWeather: TownWeather) =

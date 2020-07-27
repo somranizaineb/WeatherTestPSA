@@ -1,4 +1,4 @@
-package com.example.weathertestpsa.common.view
+package com.example.weathertestpsa.feature.weather.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,9 @@ class TownListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.town_row, parent, false)
-        return MyHolder(v)
+        return MyHolder(
+            v
+        )
     }
 
     override fun getItemCount(): Int = towns?.size ?: 0
@@ -34,17 +36,6 @@ class TownListAdapter(
         holder.itemView.setOnClickListener {
             itemClickEvent.onItemClick(towns?.get(position))
         }
-    }
-
-    private fun getResId(drawableName: String): Int {
-        try {
-            val res = R.drawable::class.java
-            val field = res.getField(drawableName)
-            return field.getInt(null)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return -1
     }
 
     interface ItemClickEvent {

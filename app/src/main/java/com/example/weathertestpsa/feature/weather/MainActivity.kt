@@ -1,46 +1,33 @@
 package com.example.weathertestpsa.feature.weather
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.common.base.BaseActivity
-import com.example.weathertestpsa.common.base.replaceFragmentSafely
-import com.example.weathertestpsa.feature.weather.fragments.AddTownFragment
+import com.example.weathertestpsa.common.extensions.replaceFragmentSafely
+import com.example.weathertestpsa.common.views.ToolbarView
 import com.example.weathertestpsa.feature.weather.fragments.ListTownFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), TownContract.TownActivityContract{
+class MainActivity : AppCompatActivity(),
+    ToolbarView.ToolbarInteraction,
+    TownContract.TownActivityContract {
 
     ///////////////////////////////////////////////////////////////////////////
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
-    private lateinit var weatherViewModel: WeatherViewModel
+
 
     ///////////////////////////////////////////////////////////////////////////
     // ACTIVITY LIFECYCLE HANDLING
     ///////////////////////////////////////////////////////////////////////////
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        weatherViewModel = viewModel()
         setContentView(R.layout.activity_main)
+        toolbar.toolbarInteraction = this
         //commit first fragment
-        navigateTo(ListTownFragment.newInstance(), false)
-        observe()
-        weatherViewModel.fetchData(33, -94)
-    }
+        navigateTo(ListTownFragment.newInstance(), true)
 
-
-    ///////////////////////////////////////////////////////////////////////////
-    // OBSERVE VIEW MODEL
-    ///////////////////////////////////////////////////////////////////////////
-    private fun observe() {
-
-        weatherViewModel.observeWeatherData().observe(this, Observer {
-            it?.let {
-
-
-            }
-        })
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -56,8 +43,33 @@ class MainActivity : BaseActivity(), TownContract.TownActivityContract{
         )
     }
 
-    override fun initToolbar(isHome: Boolean) {
-        TODO("Not yet implemented")
+
+    override fun initToolbar(tag: String) {
+        when (tag) {
+            "addTown" -> {
+                toolbar.setTitle(getString(R.string.add_town_title))
+                toolbar.hidePrevious()
+            }
+            "ListTown" -> {
+                toolbar.setTitle(getString(R.string.list_town))
+                toolbar.showPrevious()
+            }
+            "DetailWeather" -> {
+                toolbar.setTitle(getString(R.string.weather_details))
+                toolbar.showPrevious()
+            }
+        }
+    }
+
+    /**
+     * go back to the previous fragment
+     */
+    override fun popBackStack() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun onBack() {
+        supportFragmentManager.popBackStack()
     }
 
 

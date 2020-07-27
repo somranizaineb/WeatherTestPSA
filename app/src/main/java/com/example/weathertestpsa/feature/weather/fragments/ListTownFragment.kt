@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.common.base.BaseFragment
 import com.example.weathertestpsa.feature.weather.MainActivity
 import com.example.weathertestpsa.feature.weather.TownContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
+import com.example.weathertestpsa.feature.weather.adapters.TownAdapter
 import kotlinx.android.synthetic.main.fragment_list_town.*
 
 
-class ListTownFragment : BaseFragment(),
-    TownContract.ListTownFragmentContract {
+class ListTownFragment : Fragment(),
+    TownContract.ListTownFragmentContract{
 
     ///////////////////////////////////////////////////////////////////////////
     // VIEWMODEL
@@ -26,11 +28,15 @@ class ListTownFragment : BaseFragment(),
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
     private var activityContractImp: TownContract.TownActivityContract? = null
+    private var adapter: TownAdapter? = null
 
 
-    ///////////////////////////////////////////////////////////////////////////
-    // FRAGMENT LIFECYCLE HANDLING
-    ///////////////////////////////////////////////////////////////////////////
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.let { act ->
+            weatherViewModel = ViewModelProviders.of(act).get(WeatherViewModel::class.java)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,11 +47,21 @@ class ListTownFragment : BaseFragment(),
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        weatherViewModel = viewModel()
         activityContractImp = activity as MainActivity
-        weatherViewModel.retrieveFavoritesTownsFromLocal()
-        clickToAddNewTown()
+        initRecyclerView()
+        getListTownFromLocal()
         initObservation()
+        clickToAddNewTown()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initToolbar()
+    }
+
+
+    override fun initToolbar() {
+        activityContractImp?.initToolbar("ListTown")
     }
 
 
@@ -53,7 +69,10 @@ class ListTownFragment : BaseFragment(),
     // ListTownFragmentContract IMPLEMENTATION
     ///////////////////////////////////////////////////////////////////////////
     override fun initRecyclerView() {
-        TODO("Not yet implemented")
+        val linearLayoutManager = LinearLayoutManager(context)
+        town_rv.layoutManager = linearLayoutManager
+        adapter = TownAdapter(this)
+        town_rv.adapter = adapter
 
     }
 
@@ -62,23 +81,24 @@ class ListTownFragment : BaseFragment(),
         weatherViewModel.observeFavoritesTownsLiveData()
             .observe(viewLifecycleOwner, Observer { list ->
                 list?.let {
-                    Toast.makeText(activity, "Its toast!", Toast.LENGTH_SHORT).show()
+                    adapter?.defineTownListData(it)
                 }
 
             })
     }
 
     override fun getListTownFromLocal() {
-        TODO("Not yet implemented")
+        weatherViewModel.retrieveFavoritesTownsFromLocal()
     }
 
     override fun clickToAddNewTown() {
-
         add_town.setOnClickListener {
-            //FIXME juste for test
-            activityContractImp?.navigateTo(WeatherDetailFragment.newInstance(33, -94), true)
-            //activityContractImp?.navigateTo(AddTownFragment.newInstance(), true)
+            activityContractImp?.navigateTo(AddTownFragment.newInstance(), true)
         }
+    }
+
+    override fun clickToGetWeatherDetail(lat: Double, lon: Double, city: String) {
+        activityContractImp?.navigateTo(WeatherDetailFragment.newInstance(lat, lon, city), true)
     }
 
 
@@ -86,4 +106,5 @@ class ListTownFragment : BaseFragment(),
         fun newInstance() = ListTownFragment()
 
     }
+
 }

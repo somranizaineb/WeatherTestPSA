@@ -1,4 +1,4 @@
-package com.example.weathertestpsa.common.extension
+package com.example.weathertestpsa.common.extensions
 
 import android.content.Context
 import android.util.Base64

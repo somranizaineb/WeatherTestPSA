@@ -3,11 +3,10 @@ package com.example.weathertestpsa.di
 import com.example.lib.di.component.AppScope
 import com.example.lib.di.component.LibComponent
 import com.example.weathertestpsa.feature.weather.MainActivity
-import com.example.weathertestpsa.common.base.BaseActivity
 import com.example.weathertestpsa.common.base.BaseApplication
-import com.example.weathertestpsa.common.base.BaseFragment
 import com.example.weathertestpsa.di.module.AppModule
 import com.example.weathertestpsa.di.module.ViewModelModule
+import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import dagger.Component
 
 /**
@@ -26,7 +25,8 @@ interface AppComponent {
      * @param application The sample application.
      */
     fun inject(application: BaseApplication)
-    fun inject(baseActivity: BaseActivity)
+
     fun inject(mainActivity: MainActivity)
-    fun inject(baseFragment: BaseFragment)
+
+    fun inject(weatherViewModel: WeatherViewModel)
 }

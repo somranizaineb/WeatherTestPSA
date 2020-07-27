@@ -1,12 +1,13 @@
-package com.example.weathertestpsa.common.base
+package com.example.weathertestpsa.common.extensions
 
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 /**
  * Created by zaineb on 25/07/2020
  */
-fun BaseActivity.replaceFragmentSafely(
+fun AppCompatActivity.replaceFragmentSafely(
     @IdRes layout: Int,
     fragment: Fragment,
     tag: String,
@@ -28,3 +29,5 @@ fun BaseActivity.replaceFragmentSafely(
         }
     }
 }
+
+

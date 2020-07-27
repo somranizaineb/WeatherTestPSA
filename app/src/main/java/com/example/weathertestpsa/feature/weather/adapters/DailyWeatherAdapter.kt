@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.data.remote.response.model.Daily
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.common.extension.defineDrawableFrom
-import com.example.weathertestpsa.common.extension.getDateTime
+import com.example.weathertestpsa.common.extensions.defineDrawableFrom
+import com.example.weathertestpsa.common.extensions.getDateTime
 import kotlinx.android.synthetic.main.item_daily_weather.view.*
 import kotlin.math.roundToInt
 
@@ -17,6 +17,11 @@ import kotlin.math.roundToInt
  * Created by zaineb on 26/07/2020
  */
 class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherAdapter.DailyViewHolder>() {
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // PROPERTIES SECTION
+    ///////////////////////////////////////////////////////////////////////////
 
     private val dailyList: MutableList<Daily> = mutableListOf()
 
@@ -44,6 +49,10 @@ class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherAdapter.DailyViewHo
             weatherImg.defineDrawableFrom(daily?.weather?.get(0)?.icon)
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // IMPLEMENTATION SECTION
+    ///////////////////////////////////////////////////////////////////////////
 
     override fun getItemCount(): Int = dailyList.size
 

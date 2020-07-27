@@ -18,7 +18,7 @@ class Town : Serializable {
 
 
     override fun toString(): String {
-        return "City(country=$country, city=$city, lat=$lat, lng=$lng)"
+        return "Town(country=$country, city=$city, lat=$lat, lng=$lng)"
     }
 
     companion object {

@@ -12,7 +12,7 @@ import com.example.lib.data.entities.TownWeather
 @Dao
 interface TownWeatherDao {
     @Query("SELECT * FROM weather_town_info WHERE lat=:lat AND lon=:lon")
-    suspend fun findAll(lat: Long, lon: Long): TownWeather
+    suspend fun findAll(lat: Double, lon: Double): TownWeather?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(towns: TownWeather)

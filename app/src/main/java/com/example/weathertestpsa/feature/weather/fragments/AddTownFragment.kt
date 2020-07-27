@@ -8,16 +8,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.lib.data.entities.Town
 import com.example.lib.data.entities.Town.Companion.buildCityFromJson
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.common.base.BaseFragment
-import com.example.weathertestpsa.common.extension.loadJSONFromAsset
-import com.example.weathertestpsa.common.view.TownView
+import com.example.weathertestpsa.common.extensions.loadJSONFromAsset
+import com.example.weathertestpsa.feature.weather.MainActivity
+import com.example.weathertestpsa.feature.weather.TownContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_add_town.*
 
-class AddTownFragment : BaseFragment(), TownView.TownViewInteraction {
+class AddTownFragment : Fragment(),
+    TownContract.AddTownFragmentContract {
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -29,13 +32,31 @@ class AddTownFragment : BaseFragment(), TownView.TownViewInteraction {
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
     private lateinit var listOfTowns: MutableList<Town>
+    private var activityContractImp: TownContract.TownActivityContract? = null
 
     ///////////////////////////////////////////////////////////////////////////
     // FRAGMENT LIFECYCLE HANDLING
     ///////////////////////////////////////////////////////////////////////////
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.let { act ->
+            weatherViewModel = ViewModelProviders.of(act).get(WeatherViewModel::class.java)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_add_town, container, false)
+    }
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        weatherViewModel = viewModel()
+        activityContractImp = activity as MainActivity
         Handler().postDelayed({
             val cityString = context?.loadJSONFromAsset()
             listOfTowns = buildCityFromJson(cityString)
@@ -59,18 +80,15 @@ class AddTownFragment : BaseFragment(), TownView.TownViewInteraction {
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_town, container, false)
+
+    override fun onResume() {
+        super.onResume()
+        initToolbar()
     }
 
-    companion object {
 
-        @JvmStatic
-        fun newInstance() = AddTownFragment()
+    override fun initToolbar() {
+        activityContractImp?.initToolbar("addTown")
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -78,8 +96,17 @@ class AddTownFragment : BaseFragment(), TownView.TownViewInteraction {
     ///////////////////////////////////////////////////////////////////////////
     override fun chooseTown(town: Town?) {
         // add town to data base
-        town?.let { weatherViewModel.addTown(it) }
-        // notify activity to back to towns list screen
+        town?.let {
+            weatherViewModel.addTown(it)
+            // notify activity to back to towns list screen
+            activityContractImp?.popBackStack()
+        }
+
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = AddTownFragment()
     }
 
 
