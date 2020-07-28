@@ -14,6 +14,12 @@ import javax.inject.Singleton
 @Module
 class ContractModule {
 
+    /**
+     * Create a provider method binding for [WeatherRepository].
+     *
+     * @return Instance of WeatherRepository.
+     * @see Provides
+     */
     @Provides
     @Singleton
     fun provideWeatherRepository(weatherRemote: WeatherRemote, weatherLocal: WeatherLocal)

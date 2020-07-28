@@ -1,16 +1,13 @@
 package com.example.weathertestpsa.common.extensions
 
 import android.content.Context
-import android.util.Base64
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.Charset
 
-fun readFileAsString(base64String: String): String {
-    val data = Base64.decode(base64String, Base64.DEFAULT)
-    return String(data, Charset.forName("UTF-8"))
-}
-
+/**
+ * Created by zaineb on 26/07/2020
+ */
 fun Context.loadJSONFromAsset(): String? {
     val json: String?
     json = try {

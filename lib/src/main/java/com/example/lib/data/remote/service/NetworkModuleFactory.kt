@@ -2,6 +2,7 @@ package com.example.lib.data.remote.service
 
 import android.app.Application
 import android.content.Context
+import com.example.lib.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Cache
 import okhttp3.Interceptor
@@ -29,7 +30,7 @@ object NetworkModuleFactory {
 
     private fun makeService(okHttpClient: OkHttpClient): ServiceEndPoint {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl(BuildConfig.BASEURL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create())
             .client(okHttpClient)

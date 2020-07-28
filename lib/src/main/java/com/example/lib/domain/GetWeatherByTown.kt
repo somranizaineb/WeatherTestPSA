@@ -1,5 +1,9 @@
 package com.example.lib.domain
 
+import com.example.lib.common.APPID
+import com.example.lib.common.EXCLUDE
+import com.example.lib.common.LAN
+import com.example.lib.common.UNITS
 import com.example.lib.data.remote.response.model.WeatherTownResponse
 import com.example.lib.data.repository.WeatherRepository
 import javax.inject.Inject
@@ -16,10 +20,10 @@ class GetWeatherByTown @Inject constructor(private val weatherRepository: Weathe
         return weatherRepository.getWeatherTown(
             lat,
             lon,
-            "minutely,hourly",
-            "39df4d2213f72ea35fcfcf89100d61ab",
-            "metric",
-            "fr"
+            EXCLUDE,
+            APPID,
+            UNITS,
+            LAN
         )
     }
 }

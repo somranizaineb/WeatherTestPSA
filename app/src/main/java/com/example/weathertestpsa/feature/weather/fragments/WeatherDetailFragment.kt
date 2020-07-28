@@ -16,8 +16,8 @@ import com.example.weathertestpsa.common.extensions.getDateTime
 import com.example.weathertestpsa.common.extensions.round
 import com.example.weathertestpsa.common.utils.LoadingState
 import com.example.weathertestpsa.common.utils.isInternetAvailable
-import com.example.weathertestpsa.feature.weather.MainActivity
-import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.WeatherActivity
+import com.example.weathertestpsa.feature.weather.WeatherContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import com.example.weathertestpsa.feature.weather.adapters.DailyWeatherAdapter
 import kotlinx.android.synthetic.main.fragment_weather_detail.*
@@ -25,7 +25,7 @@ import kotlin.math.roundToInt
 
 
 class WeatherDetailFragment : Fragment(),
-    TownContract.WeatherDetailFragmentContract {
+    WeatherContract.WeatherDetailFragmentContract {
 
     ///////////////////////////////////////////////////////////////////////////
     // VIEWMODEL
@@ -40,7 +40,7 @@ class WeatherDetailFragment : Fragment(),
     private var lon: Double = 0.0
     private var city: String = ""
     private var adapter: DailyWeatherAdapter? = null
-    private var activityContractImp: TownContract.TownActivityContract? = null
+    private var activityContractImp: WeatherContract.WeatherActivityContract? = null
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ class WeatherDetailFragment : Fragment(),
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activityContractImp = activity as MainActivity
+        activityContractImp = activity as WeatherActivity
         initDailyWeatherRecyclerView()
         // check if there is connection
         if (context?.let { isInternetAvailable(it) }!!) weatherViewModel.fetchData(lat, lon)

@@ -1,7 +1,6 @@
 package com.example.weathertestpsa.common.base
 
 import android.app.Application
-import android.content.Context
 import com.example.lib.di.component.DaggerLibComponent
 import com.example.lib.di.component.LibComponent
 import com.example.lib.di.modules.ContextModule
@@ -20,10 +19,10 @@ class BaseApplication : Application() {
 
         /**
          * Obtain app  components.
-         *
+         * libComponent and appComponent
          */
         lateinit var libComponent: LibComponent
-        lateinit var component: AppComponent
+        lateinit var appComponent: AppComponent
 
 
 
@@ -43,12 +42,12 @@ class BaseApplication : Application() {
      * Initialize app dependency injection component.
      */
     private fun initAppDependencyInjection() {
-        component = DaggerAppComponent
+        appComponent = DaggerAppComponent
             .builder()
             .libComponent(libComponent)
             .build()
 
-        component.inject(this)
+        appComponent.inject(this)
     }
 
     /**

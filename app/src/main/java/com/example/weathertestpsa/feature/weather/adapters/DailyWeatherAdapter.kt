@@ -22,7 +22,6 @@ class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherAdapter.DailyViewHo
     ///////////////////////////////////////////////////////////////////////////
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
-
     private val dailyList: MutableList<Daily> = mutableListOf()
 
     fun defineDailyListData(list: MutableList<Daily>) {
@@ -31,6 +30,9 @@ class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherAdapter.DailyViewHo
         notifyDataSetChanged()
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // VIEW HOLDER
+    ///////////////////////////////////////////////////////////////////////////
     inner class DailyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val dateTv: TextView = view.daily_weather_date
         private val tempTv: TextView = view.daily_weather_temp

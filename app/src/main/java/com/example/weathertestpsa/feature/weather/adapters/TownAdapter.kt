@@ -7,13 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.data.entities.Town
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.WeatherContract
 import kotlinx.android.synthetic.main.item_town.view.*
 
 /**
  * Created by zaineb on 27/07/2020
  */
-class TownAdapter(private val listener: TownContract.ListTownFragmentContract) :
+class TownAdapter(private val listener: WeatherContract.ListTownFragmentContract) :
     RecyclerView.Adapter<TownAdapter.TownViewHolder>() {
 
 
@@ -28,8 +28,11 @@ class TownAdapter(private val listener: TownContract.ListTownFragmentContract) :
         notifyDataSetChanged()
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    // VIEW HOLDER
+    ///////////////////////////////////////////////////////////////////////////
     inner class TownViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val townTv: TextView = view.town_name
+        private val townTv: TextView = view.town_name
         fun bindDataToAssociatedView(town: Town?) {
             townTv.text = town?.city
             townTv.setOnClickListener {

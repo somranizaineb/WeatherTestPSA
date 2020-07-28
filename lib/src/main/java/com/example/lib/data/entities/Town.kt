@@ -22,7 +22,7 @@ class Town : Serializable {
     }
 
     companion object {
-        fun buildCityFromJson(cityJsonString: String?): MutableList<Town> {
+        fun buildTownFromJson(cityJsonString: String?): MutableList<Town> {
             val list = mutableListOf<Town>()
             val jsonArray = JSONArray(cityJsonString)
 

@@ -4,19 +4,15 @@ import androidx.room.TypeConverters
 import com.example.lib.data.local.converters.Converters
 import com.squareup.moshi.Json
 
-class Daily {
+class Daily(
     @Json(name = "dt")
-    var dt: Long? = null
+    var dt: Long? = null,
 
     @Json(name = "temp")
-    var temp: Temp? = null
+    var temp: Temp? = null,
 
     @Json(name = "weather")
     @TypeConverters(Converters::class)
     var weather: List<Weather>? = null
-    override fun toString(): String {
-        return "Daily(dt=$dt, temp=$temp, weather=$weather)"
-    }
+)
 
-
-}

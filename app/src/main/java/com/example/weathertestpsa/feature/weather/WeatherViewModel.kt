@@ -12,7 +12,6 @@ import com.example.lib.data.remote.response.model.townWeatherBuilder
 import com.example.lib.domain.*
 import com.example.weathertestpsa.common.base.BaseApplication
 import com.example.weathertestpsa.common.utils.LoadingState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +20,7 @@ import javax.inject.Inject
  * Created by zaineb on 24/07/2020
  */
 class WeatherViewModel @Inject constructor() : ViewModel(),
-    TownContract.WeatherViewModelContract {
+    WeatherContract.WeatherViewModelContract {
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -29,7 +28,7 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
     ///////////////////////////////////////////////////////////////////////////
     init {
 
-        BaseApplication.component.inject(this)
+        BaseApplication.appComponent.inject(this)
     }
 
     @Inject
@@ -82,7 +81,6 @@ class WeatherViewModel @Inject constructor() : ViewModel(),
         }
 
     }
-
 
     private fun addWeatherInfoToLocal(townWeather: TownWeather) {
         viewModelScope.launch {

@@ -31,8 +31,8 @@ class TownWeather {
 
 fun TownWeather.townWeatherBuilder(): WeatherTownResponse {
     val weatherTownResponse = WeatherTownResponse()
-    weatherTownResponse.lon = lon ?: 0.0
-    weatherTownResponse.lat = lat ?: 0.0
+    weatherTownResponse.lon = lon
+    weatherTownResponse.lat = lat
     weatherTownResponse.timezone = this.timezone
     weatherTownResponse.current = Gson().fromJson(this.current, Current::class.java)
     weatherTownResponse.daily =

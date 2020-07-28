@@ -9,7 +9,6 @@ import javax.inject.Inject
  */
 class AddTown @Inject constructor(private val weatherRepository: WeatherRepository) {
 
-
     suspend fun execute(town: Town) =
         weatherRepository.addTown(town)
 

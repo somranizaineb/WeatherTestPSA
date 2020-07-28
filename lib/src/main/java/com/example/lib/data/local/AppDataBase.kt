@@ -18,7 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val townDao: TownDao
 
     companion object {
-        const val VERSION = 9
+        const val VERSION = 1
         const val NAME = "weather.db"
     }
 

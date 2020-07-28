@@ -15,8 +15,15 @@ import kotlinx.android.synthetic.main.toolbar_layout.view.*
  */
 class ToolbarView : Toolbar {
 
+    ///////////////////////////////////////////////////////////////////////////
+    // VIEW ATTRIBUTES SECTION
+    ///////////////////////////////////////////////////////////////////////////
     private lateinit var titleTV: TextView
     private lateinit var previousTV: TextView
+
+    ///////////////////////////////////////////////////////////////////////////
+    // INTERACTION PROPERTY SECTION
+    ///////////////////////////////////////////////////////////////////////////
 
     var toolbarInteraction: ToolbarInteraction? = null
 
@@ -24,10 +31,8 @@ class ToolbarView : Toolbar {
 
     constructor(@NonNull context: Context, @NonNull attr: AttributeSet) : super(context, attr) {
         val view = LayoutInflater.from(context).inflate(R.layout.toolbar_layout, this)
-
         titleTV = view.toolbar_title
         previousTV = view.toolbar_previous
-
         previousTV.setOnClickListener {
             toolbarInteraction?.onBack()
         }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lib.data.entities.Town
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.WeatherContract
 import com.example.weathertestpsa.feature.weather.adapters.TownListAdapter
 import kotlinx.android.synthetic.main.all_town_view.view.*
 import java.util.*
@@ -35,11 +35,8 @@ class TownView : ConstraintLayout {
     ///////////////////////////////////////////////////////////////////////////
     // INTERACTION PROPERTY SECTION
     ///////////////////////////////////////////////////////////////////////////
-    var townViewInteraction: TownContract.AddTownFragmentContract? = null
+    var townViewInteraction: WeatherContract.AddTownFragmentContract? = null
 
-    ///////////////////////////////////////////////////////////////////////////
-    // COUNTRIES GENERATING PROPERTY
-    ///////////////////////////////////////////////////////////////////////////
 
     constructor(@NonNull context: Context) : super(context)
 
@@ -50,7 +47,7 @@ class TownView : ConstraintLayout {
 
     fun initViewAccordingTo(
         listOfTowns: MutableList<Town>,
-        interaction: TownContract.AddTownFragmentContract
+        interaction: WeatherContract.AddTownFragmentContract
     ) {
         allCountriesList = listOfTowns
         selectedCountriesList = mutableListOf()

@@ -10,10 +10,10 @@ import com.example.lib.data.remote.response.model.WeatherTownResponse
  * or ViewModel is about to handle.
  *
  */
-object TownContract {
+object WeatherContract {
 
 
-    interface TownActivityContract {
+    interface WeatherActivityContract {
         fun navigateTo(fragment: Fragment, shouldAddToBackStack: Boolean)
         fun initToolbar(tag: String)
         fun popBackStack()
@@ -39,8 +39,6 @@ object TownContract {
         fun defineCurrentWeather(townWeather: WeatherTownResponse)
         fun initDailyWeatherRecyclerView()
     }
-
-
 
     interface WeatherViewModelContract {
         fun fetchData(lat: Double, lon: Double)

@@ -34,8 +34,12 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            buildConfigField 'String', 'BASEURL', '"https://api.openweathermap.org/data/2.5/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField 'String', 'BASEURL', '"https://api.openweathermap.org/data/2.5/"'
         }
     }
 
@@ -80,7 +84,7 @@ dependencies {
     implementation dependencies.coroutinesAdapter
 
 
-    //
+    //lifeCycle
     implementation dependencies.lifeCycle
     implementation dependencies.lifeCycleVM
 

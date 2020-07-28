@@ -28,13 +28,6 @@ interface LibComponent {
     fun context(): Context
 
     /**
-     * Provide dependency graph MarvelService
-     *
-     * @return MarvelService
-     */
-    //fun marvelService(): MarvelService
-
-    /**
      * Provide dependency graph MarvelRepository
      *
      * @return MarvelRepository

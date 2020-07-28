@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.town_row.view.*
 
 /**
  * Created by zaineb on 26/07/2020
+ * this adapter is for TownView
  */
 class TownListAdapter(
     var towns: MutableList<Town>?,

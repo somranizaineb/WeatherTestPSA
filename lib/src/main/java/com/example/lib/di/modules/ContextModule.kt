@@ -3,7 +3,6 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 /**
  * Created by zaineb on 23/07/2020

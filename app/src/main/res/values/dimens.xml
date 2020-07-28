@@ -6,28 +6,24 @@
 
     <dimen name="font_xhuge">78sp</dimen>
     <dimen name="font_huge">50sp</dimen>
-    <dimen name="font_xxlarge">44sp</dimen>
-    <dimen name="font_xlarge">26sp</dimen>
-    <dimen name="font_large">22sp</dimen>
-    <dimen name="font_xmedium">18sp</dimen>
+    <dimen name="font_large">26sp</dimen>
     <dimen name="font_medium">16sp</dimen>
     <dimen name="font_xsmall">15sp</dimen>
     <dimen name="font_small">14sp</dimen>
-    <dimen name="font_very_small">13sp</dimen>
     <dimen name="font_tiny">12sp</dimen>
     <dimen name="font_xtiny">10sp</dimen>
     <dimen name="font_step">2sp</dimen>
 
     <!-- typical spacing between two views -->
-    <dimen name="spacing_xxlarge">24dp</dimen>
-    <dimen name="spacing_xlarge">18dp</dimen>
+    <dimen name="spacing_xlarge">24dp</dimen>
     <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_medium">10dp</dimen>
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_micro">4dp</dimen>
-    <dimen name="spacing_tiny">2dp</dimen>
 
     <!-- typical dimension of view  -->
 
     <dimen name="thick_view">48dp</dimen>
+    <dimen name="big_view">48dp</dimen>
 
 </resources>

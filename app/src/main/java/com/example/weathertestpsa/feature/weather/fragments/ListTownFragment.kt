@@ -9,15 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weathertestpsa.R
-import com.example.weathertestpsa.feature.weather.MainActivity
-import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.WeatherActivity
+import com.example.weathertestpsa.feature.weather.WeatherContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import com.example.weathertestpsa.feature.weather.adapters.TownAdapter
 import kotlinx.android.synthetic.main.fragment_list_town.*
 
 
 class ListTownFragment : Fragment(),
-    TownContract.ListTownFragmentContract{
+    WeatherContract.ListTownFragmentContract {
 
     ///////////////////////////////////////////////////////////////////////////
     // VIEWMODEL
@@ -27,9 +27,12 @@ class ListTownFragment : Fragment(),
     ///////////////////////////////////////////////////////////////////////////
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
-    private var activityContractImp: TownContract.TownActivityContract? = null
+    private var activityContractImp: WeatherContract.WeatherActivityContract? = null
     private var adapter: TownAdapter? = null
 
+    ///////////////////////////////////////////////////////////////////////////
+    // FRAGMENT LIFECYCLE HANDLING
+    ///////////////////////////////////////////////////////////////////////////
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class ListTownFragment : Fragment(),
             weatherViewModel = ViewModelProviders.of(act).get(WeatherViewModel::class.java)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +51,7 @@ class ListTownFragment : Fragment(),
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activityContractImp = activity as MainActivity
+        activityContractImp = activity as WeatherActivity
         initRecyclerView()
         getListTownFromLocal()
         initObservation()
@@ -60,11 +64,6 @@ class ListTownFragment : Fragment(),
     }
 
 
-    override fun initToolbar() {
-        activityContractImp?.initToolbar("ListTown")
-    }
-
-
     ///////////////////////////////////////////////////////////////////////////
     // ListTownFragmentContract IMPLEMENTATION
     ///////////////////////////////////////////////////////////////////////////
@@ -74,6 +73,10 @@ class ListTownFragment : Fragment(),
         adapter = TownAdapter(this)
         town_rv.adapter = adapter
 
+    }
+
+    override fun initToolbar() {
+        activityContractImp?.initToolbar("ListTown")
     }
 
     override fun initObservation() {

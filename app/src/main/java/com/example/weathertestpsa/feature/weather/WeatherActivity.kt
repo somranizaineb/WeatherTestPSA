@@ -4,19 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.weathertestpsa.R
+import com.example.weathertestpsa.common.constants.ADD_TOWN
+import com.example.weathertestpsa.common.constants.DETAIL_WEATHER
+import com.example.weathertestpsa.common.constants.LIST_TOWN
 import com.example.weathertestpsa.common.extensions.replaceFragmentSafely
 import com.example.weathertestpsa.common.views.ToolbarView
 import com.example.weathertestpsa.feature.weather.fragments.ListTownFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),
+class WeatherActivity : AppCompatActivity(),
     ToolbarView.ToolbarInteraction,
-    TownContract.TownActivityContract {
-
-    ///////////////////////////////////////////////////////////////////////////
-    // PROPERTIES SECTION
-    ///////////////////////////////////////////////////////////////////////////
-
+    WeatherContract.WeatherActivityContract {
 
     ///////////////////////////////////////////////////////////////////////////
     // ACTIVITY LIFECYCLE HANDLING
@@ -46,15 +44,15 @@ class MainActivity : AppCompatActivity(),
 
     override fun initToolbar(tag: String) {
         when (tag) {
-            "addTown" -> {
+            ADD_TOWN -> {
                 toolbar.setTitle(getString(R.string.add_town_title))
-                toolbar.hidePrevious()
-            }
-            "ListTown" -> {
-                toolbar.setTitle(getString(R.string.list_town))
                 toolbar.showPrevious()
             }
-            "DetailWeather" -> {
+            LIST_TOWN -> {
+                toolbar.setTitle(getString(R.string.list_town))
+                toolbar.hidePrevious()
+            }
+            DETAIL_WEATHER -> {
                 toolbar.setTitle(getString(R.string.weather_details))
                 toolbar.showPrevious()
             }

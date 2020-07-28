@@ -8,6 +8,4 @@ package com.example.weathertestpsa
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 
-class ExampleInstrumentedTest {
-
-}
+class ExampleInstrumentedTest

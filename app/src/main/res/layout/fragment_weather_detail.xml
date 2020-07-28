@@ -117,7 +117,7 @@
             android:id="@+id/daily_weather_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xxlarge"
+            android:layout_marginTop="@dimen/spacing_xlarge"
             android:background="@color/orange_light"
             android:fontFamily="@font/montserrat_bold"
             android:padding="@dimen/spacing_large"

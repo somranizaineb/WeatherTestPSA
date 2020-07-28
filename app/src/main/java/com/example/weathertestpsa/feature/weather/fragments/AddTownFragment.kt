@@ -11,16 +11,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.lib.data.entities.Town
-import com.example.lib.data.entities.Town.Companion.buildCityFromJson
+import com.example.lib.data.entities.Town.Companion.buildTownFromJson
 import com.example.weathertestpsa.R
 import com.example.weathertestpsa.common.extensions.loadJSONFromAsset
-import com.example.weathertestpsa.feature.weather.MainActivity
-import com.example.weathertestpsa.feature.weather.TownContract
+import com.example.weathertestpsa.feature.weather.WeatherActivity
+import com.example.weathertestpsa.feature.weather.WeatherContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_add_town.*
 
 class AddTownFragment : Fragment(),
-    TownContract.AddTownFragmentContract {
+    WeatherContract.AddTownFragmentContract {
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ class AddTownFragment : Fragment(),
     // PROPERTIES SECTION
     ///////////////////////////////////////////////////////////////////////////
     private lateinit var listOfTowns: MutableList<Town>
-    private var activityContractImp: TownContract.TownActivityContract? = null
+    private var activityContractImp: WeatherContract.WeatherActivityContract? = null
 
     ///////////////////////////////////////////////////////////////////////////
     // FRAGMENT LIFECYCLE HANDLING
@@ -56,10 +56,10 @@ class AddTownFragment : Fragment(),
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activityContractImp = activity as MainActivity
+        activityContractImp = activity as WeatherActivity
         Handler().postDelayed({
             val cityString = context?.loadJSONFromAsset()
-            listOfTowns = buildCityFromJson(cityString)
+            listOfTowns = buildTownFromJson(cityString)
             townView.initViewAccordingTo(listOfTowns, this)
 
         }, 1000)
@@ -86,14 +86,12 @@ class AddTownFragment : Fragment(),
         initToolbar()
     }
 
-
+    ///////////////////////////////////////////////////////////////////////////
+    // AddTownFragmentContract IMPLEMENTATION
+    ///////////////////////////////////////////////////////////////////////////
     override fun initToolbar() {
         activityContractImp?.initToolbar("addTown")
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // TownViewInteraction IMPLEMENTATION
-    ///////////////////////////////////////////////////////////////////////////
     override fun chooseTown(town: Town?) {
         // add town to data base
         town?.let {

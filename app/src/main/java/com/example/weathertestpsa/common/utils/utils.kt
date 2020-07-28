@@ -7,6 +7,7 @@ import android.os.Build
 
 /**
  * Created by zaineb on 27/07/2020
+ * check internet connectivity
  */
 @Suppress("DEPRECATION")
 fun isInternetAvailable(context: Context): Boolean {

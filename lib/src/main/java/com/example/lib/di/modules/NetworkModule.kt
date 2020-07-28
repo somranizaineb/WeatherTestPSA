@@ -12,6 +12,12 @@ import dagger.Provides
 @Module
 class NetworkModule {
 
+    /**
+     * Create a provider method binding for [ServiceEndPoint].
+     *
+     * @return Instance of ServiceEndPoint.
+     * @see Provides
+     */
     @Provides
     internal fun provideServiceEndPoint(context: Context): ServiceEndPoint =
         NetworkModuleFactory.makeService(context)

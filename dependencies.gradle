@@ -29,6 +29,11 @@ ext {
     daggerVersion = "2.28.3"
     okhttp3LoggingVersion = "4.5.0"
 
+    moshi = "2.4.0"
+    recyclerView = "1.1.0"
+    materialDesign = "1.1.0"
+
+
     // testing
     lifecycle = "2.1.0"
     junit = "4.12"
@@ -71,19 +76,17 @@ ext {
 
             //moshi
 
-            moshi            : "com.squareup.retrofit2:converter-moshi:2.4.0",
+            moshi            : "com.squareup.retrofit2:converter-moshi:$moshi",
 
             //recycleview
 
-            recyclerView     : "androidx.recyclerview:recyclerview:1.1.0",
+            recyclerView     : "androidx.recyclerview:recyclerview:$recyclerView",
 
             // material design
 
-            materialDesign   : "com.google.android.material:material:1.1.0",
+            materialDesign   : "com.google.android.material:material:$materialDesign",
 
             //testing
-
-            //Test
 
             junit            : "junit:junit:$junit",
             lifecycleTesting : "androidx.arch.core:core-testing:$lifecycle",

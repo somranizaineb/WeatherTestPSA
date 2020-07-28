@@ -11,6 +11,13 @@ import javax.inject.Singleton
 @Module
 class DatabaseModule {
 
+    /**
+     * Create a provider method binding for [AppDatabase].
+     *
+     * @return Instance of AppDatabase.
+     * @see Provides
+     */
+
     @Provides
     @Singleton
     internal fun provideAppDatabase(context: Context): AppDatabase {

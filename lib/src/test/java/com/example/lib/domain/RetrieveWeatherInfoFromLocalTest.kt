@@ -1,11 +1,10 @@
 package com.example.lib.domain
 
 import com.example.lib.data.repository.WeatherRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
@@ -27,6 +26,7 @@ class RetrieveWeatherInfoFromLocalTest {
         sut = RetrieveWeatherInfoFromLocal(repository)
     }
 
+    @ExperimentalCoroutinesApi
     @Test
     fun `when lat and are zero, should get null`() =runBlockingTest {
 
@@ -41,18 +41,19 @@ class RetrieveWeatherInfoFromLocalTest {
             assertEquals(null, repository.getWeatherInfoFromLocal(lat, lng))
         }
 
+    @ExperimentalCoroutinesApi
     @Test
-    fun `when lat and are double, should get not null`() = runBlockingTest {
+    fun `when lat and lng doesn't exist, should get null`() = runBlockingTest {
 
         //Given
-        val lat = 48.85
-        val lng = 2.35
+        val lat = 48.8000000
+        val lng = 2.38888888
 
         //When
         sut.execute(lat, lng)
 
         //Then
-        assertNotEquals(null, repository.getWeatherInfoFromLocal(lat, lng))
+        assertEquals(null, repository.getWeatherInfoFromLocal(lat, lng))
     }
 
 

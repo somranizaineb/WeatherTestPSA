@@ -1,6 +1,7 @@
 package com.example.lib.domain
 
 import com.example.lib.data.repository.WeatherRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
@@ -26,6 +27,7 @@ class GetWeatherByTownTest {
     }
 
 
+    @ExperimentalCoroutinesApi
     @Test
     fun `when lat and are double, should get not null`() = runBlockingTest {
 

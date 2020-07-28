@@ -2,6 +2,7 @@ package com.example.weathertestpsa.common.utils
 
 /**
  * Created by zaineb on 27/07/2020
+ * Represents the state in which a Loading is currently in
  */
 
 data class LoadingState constructor(val status: Status, val msg: String? = null) {

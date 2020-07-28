@@ -15,8 +15,6 @@ open class Weather {
     @Json(name = "icon")
     var icon: String? = null
 
-    var currentId: Int? = null
-
     override fun toString(): String =
         "Weather(id=$id, main=$main, description=$description, icon=$icon)"
 }
