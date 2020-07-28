@@ -35,6 +35,7 @@ _ clean Architecture
 
 ![graph](https://i.ibb.co/cxdLcq6/Capture-d-e-cran-2020-07-28-a-12-03-06.png)
 
+
 ### Dependencies
 
 -   [Jetpack](https://developer.android.com/jetpack):
