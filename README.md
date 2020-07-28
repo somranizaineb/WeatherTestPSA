@@ -47,6 +47,7 @@ The communication between the different layers follow the diagram below using th
 
 ## Describing API used:
 
+```
 - URL : https://openweathermap.org/api/one-call-api
 - Params :
   | - lat  latitude of the selected town, her type is double
@@ -65,6 +66,8 @@ The communication between the different layers follow the diagram below using th
 - Response : WeatherTownResponse
      | - current: Current weather data API response
      | - daily: Daily forecast for 7 days
+    
+```
 
 
 ### Dependencies
