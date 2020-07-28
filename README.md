@@ -38,9 +38,9 @@ The `:lib` module is an [com.android.library](https://developer.android.com/stu
  Providing the data source for app to display it. So to retrieve the data from the lib module we must inject usecase which comes from the lib module and which is responsible for communicating with the repository
 
 
-## Architecture components + clean + Modularization diagram
+## Architecture components + clean Architecture  + Modular Architecture diagram
 
-The communication between the different layers follow the diagram below using the reactive paradigm, observing changes on components without need of callbacks avoiding leaks and edge cases related with them.
+The communication between the different layers follow the diagram below using the reactive paradigm, observing changes on components without need of callbacks.
 
 ![graph](https://i.ibb.co/cxdLcq6/Capture-d-e-cran-2020-07-28-a-12-03-06.png)
 
