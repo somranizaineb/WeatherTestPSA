@@ -16,7 +16,7 @@ interface WeatherRepository {
         exclude: String,
         appid: String,
         units: String,
-        lang : String
+        lang: String
     ): WeatherTownResponse
 
 
