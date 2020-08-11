@@ -30,7 +30,7 @@ class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initCoreDependencyInjection()
+        initLibDependencyInjection()
         initAppDependencyInjection()
     }
 
@@ -51,9 +51,9 @@ class BaseApplication : Application() {
     }
 
     /**
-     * Initialize core dependency injection component.
+     * Initialize Lib dependency injection component.
      */
-    private fun initCoreDependencyInjection() {
+    private fun initLibDependencyInjection() {
         libComponent = DaggerLibComponent
             .builder()
             .contextModule(ContextModule(this))

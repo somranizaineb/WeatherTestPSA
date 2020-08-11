@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.lib.data.entities.Town
 import com.example.lib.data.entities.Town.Companion.buildTownFromJson
@@ -18,6 +19,7 @@ import com.example.weathertestpsa.feature.weather.WeatherActivity
 import com.example.weathertestpsa.feature.weather.WeatherContract
 import com.example.weathertestpsa.feature.weather.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_add_town.*
+import javax.inject.Inject
 
 class AddTownFragment : Fragment(),
     WeatherContract.AddTownFragmentContract {
@@ -41,7 +43,7 @@ class AddTownFragment : Fragment(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.let { act ->
-            weatherViewModel = ViewModelProviders.of(act).get(WeatherViewModel::class.java)
+            weatherViewModel =  ViewModelProvider(this).get(WeatherViewModel::class.java)
         }
     }
 

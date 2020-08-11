@@ -1,5 +1,7 @@
 package com.example.lib.domain
 
+import com.example.lib.common.whenever
+import com.example.lib.data.remote.response.model.WeatherTownResponse
 import com.example.lib.data.repository.WeatherRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -37,13 +39,26 @@ class GetWeatherByTownTest {
         val exclude = "minutely,hourly"
         val key = "39df4d2213f72ea35fcfcf89100d61ab"
         val units = "metric"
-        val lang = "fr"
+        val lang = "en"
 
-        //When
-        sut.execute(lat, lng)
+        val response = WeatherTownResponse()
+        whenever(
+            repository.getWeatherTown(
+                lat,
+                lng,
+                exclude,
+                key,
+                units,
+                lang
+            )
+        )
+            .thenReturn(response)
+
+        val result = sut.execute(lat, lng)
 
         //Then
-        assertNotEquals(null, repository.getWeatherTown(lat, lng,exclude,key,units,lang))
+        assertNotEquals(null,  result)
+
     }
 
 }

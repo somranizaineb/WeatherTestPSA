@@ -1,5 +1,6 @@
 package com.example.lib.domain
 
+import com.example.lib.common.whenever
 import com.example.lib.data.repository.WeatherRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -28,18 +29,27 @@ class RetrieveWeatherInfoFromLocalTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `when lat and are zero, should get null`() =runBlockingTest {
+    fun `when lat and are zero, should get null`() = runBlockingTest {
 
-            //Given
-            val lat = 0.0
-            val lng = 0.0
 
-            //When
-            sut.execute(lat, lng)
+        //Given
+        val lat = 0.0
+        val lng = 0.0
 
-            //Then
-            assertEquals(null, repository.getWeatherInfoFromLocal(lat, lng))
-        }
+        val response = null
+        whenever(
+            repository.getWeatherInfoFromLocal(
+                lat,
+                lng
+            )
+        )
+            .thenReturn(response)
+
+        val result = sut.execute(lat, lng)
+
+        //Then
+        assertEquals(null, result)
+    }
 
     @ExperimentalCoroutinesApi
     @Test
@@ -49,11 +59,20 @@ class RetrieveWeatherInfoFromLocalTest {
         val lat = 48.8000000
         val lng = 2.38888888
 
+        val response = null
+        whenever(
+            repository.getWeatherInfoFromLocal(
+                lat,
+                lng
+            )
+        )
+            .thenReturn(response)
+
         //When
-        sut.execute(lat, lng)
+        val result = sut.execute(lat, lng)
 
         //Then
-        assertEquals(null, repository.getWeatherInfoFromLocal(lat, lng))
+        assertEquals(null, result)
     }
 
 

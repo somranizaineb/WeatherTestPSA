@@ -30,9 +30,10 @@ class RetrieveFavoritesTownsFromLocalTest{
 
     @Test
     fun `when use case is invoked, should get towns from repository` () = runBlockingTest {
+
         //When
         sut.execute()
-        //Then
+        //Then verfily invocation
         Mockito.verify(repository).getFavoritesTownsFromLocal()
     }
 

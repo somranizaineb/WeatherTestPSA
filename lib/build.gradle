@@ -97,15 +97,14 @@ dependencies {
 
     // testing
 
-    implementation dependencies.junit
-    implementation dependencies.lifecycleTesting
-    implementation dependencies.coroutine
-    implementation dependencies.mockito
+
 
     testImplementation dependencies.junit
     testImplementation dependencies.lifecycleTesting
     testImplementation dependencies.coroutine
     testImplementation dependencies.mockito
+    testImplementation dependencies.testCore
+
 
 
 

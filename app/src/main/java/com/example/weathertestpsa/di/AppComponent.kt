@@ -20,7 +20,6 @@ import dagger.Component
 interface AppComponent {
 
     fun inject(application: BaseApplication)
-    fun inject(weatherActivity: WeatherActivity)
     fun inject(weatherViewModel: WeatherViewModel)
     fun inject(splashViewModel: SplashViewModel)
 }

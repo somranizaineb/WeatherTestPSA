@@ -90,6 +90,7 @@ ext {
 
             junit            : "junit:junit:$junit",
             lifecycleTesting : "androidx.arch.core:core-testing:$lifecycle",
+            testCore         : "androidx.test:core:1.2.0",
             coroutine        : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_test",
             mockito          : "org.mockito:mockito-core:$mockito"
 

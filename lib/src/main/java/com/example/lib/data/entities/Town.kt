@@ -11,10 +11,18 @@ import java.io.Serializable
 @Entity(tableName = "towns", primaryKeys = ["lat", "lng"])
 
 class Town : Serializable {
+
     var country: String? = null
     var city: String? = null
     var lat: Double = 0.0
     var lng: Double = 0.0
+
+    constructor(country: String?, city: String?, lat: Double, lng: Double) {
+        this.country = country
+        this.city = city
+        this.lat = lat
+        this.lng = lng
+    }
 
 
     override fun toString(): String {
